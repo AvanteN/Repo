@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="snap-store_ubuntu-software.desktop" score="47" last-seen="1689915813"/>
+    <application id="org.gnome.Nautilus.desktop" score="123" last-seen="1689931330"/>
+    <application id="putty.desktop" score="99" last-seen="1689917241"/>
+    <application id="google-chrome.desktop" score="949" last-seen="1690168210"/>
+    <application id="rhythmbox.desktop" score="0" last-seen="1689820532"/>
+    <application id="org.gnome.FileRoller.desktop" score="36" last-seen="1689930923"/>
+    <application id="org.gnome.gedit.desktop" score="22" last-seen="1689930767"/>
+    <application id="org.gnome.Terminal.desktop" score="597" last-seen="1689917361"/>
+    <application id="org.gnome.Shell.PortalHelper.desktop" score="0" last-seen="1689930925"/>
+    <application id="firefox_firefox.desktop" score="112" last-seen="1689820359"/>
+    <application id="apport-gtk.desktop" score="2" last-seen="1689899106"/>
+    <application id="termius-app_termius-app.desktop" score="19" last-seen="1689915978"/>
+  </context>
+</application-state>

@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>main.c (editing)</title>
+    <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/base/images/favicon-file.ico?v=f9f0a782d7d67b3a57bf7dce251d771b405c7890604576ec8b9a621a39d7670f6b43ffabef1e566f1cd741ee302e15977d9e1cf60bbacebafe75787b9916415c">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/static/components/jquery-ui/themes/smoothness/jquery-ui.min.css?v=1a4f0d72611d33b0fde2c02758b39f94481f33b310cf8c64cc19696c98744df0213f1c58cbbde0595b46be2730d0ed8b292337388aa80fa351942d0af83a7627" type="text/css" />
+    <link rel="stylesheet" href="/static/components/jquery-typeahead/dist/jquery.typeahead.min.css?v=d78fbaee9cf7d8a4daa1838a394fb8faea5fe820f8945c57fc2cf2f42faf8ac833ef1095e7f16c392aab686a38228ba6a74a54a850109bf4cb309976df93d73b" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+<link rel="stylesheet" href="/static/components/codemirror/lib/codemirror.css?v=ae1cafaf6fed04095da2b80e582a0e2d31d467c42e6943daf30ef40f33243ad5a0e8065909e5553c227562eb937430e03dd131a92b0078ac66b7b4ca1e1389ab">
+<link rel="stylesheet" href="/static/components/codemirror/addon/dialog/dialog.css?v=e7f5db4afaccf8a00c10d62c3693642323d3fcf17604a4797803df04e4f144a944dc646c2fda20548df538ada775570127b2a15403996a171ced1769697f3ee4">
+
+    <link rel="stylesheet" href="/static/style/style.min.css?v=7c3bf678a38686b7e272ba0c9a85f894a325cb497f8f9a7a45c781be2ffca7a695b3d56540a054d747d28e5ef1c87ac127de9b15e25e3bde4f908bf1eccd86b4" type="text/css"/>
+    
+
+    <link rel="stylesheet" href="/custom/custom.css" type="text/css" />
+    <script src="/static/components/es6-promise/promise.min.js?v=afa0bcd5a66cd67ae4d355dcae8d7350993ea3c65dceea5271478330c08bed5d89cd97aaf4f27bb36bfbe064313fb4db3b099ecd21e5bc71acf03503f99013cc" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/components/react/react.production.min.js?v=7281aa8954f69cf3b17c21916e1c278fe6feb5091f5d7406305e055019b900fc08e46d8a14dacdc9050dc067cf96a6d334b56777d02ea5d07fe8184bfcc1b786" type="text/javascript"></script>
+    <script src="/static/components/react/react-dom.production.min.js?v=1d2f94673a55e032c39e494d2831b7581e9f11b50ffc014b3901476318bfb592fbe44a0fe43bd70f452956d241082696fd3ba4f9addba383d988b3abf00946ba" type="text/javascript"></script>
+    <script src="/static/components/create-react-class/index.js?v=54dcd6f483577cbd0fcb64968162b7a40a4b65900585ecaf2c98ef1fe45f93b1e9fbdcb8e5b16027c28523b9e3753417fc8d7558592fcd9b8ecad5dc5b82a57a" type="text/javascript"></script>
+    <script src="/static/components/requirejs/require.js?v=bd1aa102bdb0b27fbf712b32cfcd29b016c272acf3d864ee8469376eaddd032cadcf827ff17c05a8c8e20061418fe58cf79947049f5c0dff3b4f73fcc8cad8ec" type="text/javascript" charset="utf-8"></script>
+    <script>
+      require.config({
+          
+          urlArgs: "v=20230720111636",
+          
+          baseUrl: '/static/',
+          paths: {
+            'auth/js/main': 'auth/js/main.min',
+            custom : '/custom',
+            nbextensions : '/nbextensions',
+            kernelspecs : '/kernelspecs',
+            underscore : 'components/underscore/underscore-min',
+            backbone : 'components/backbone/backbone-min',
+            jed: 'components/jed/jed',
+            jquery: 'components/jquery/jquery.min',
+            json: 'components/requirejs-plugins/src/json',
+            text: 'components/requirejs-text/text',
+            bootstrap: 'components/bootstrap/dist/js/bootstrap.min',
+            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
+            'jquery-ui': 'components/jquery-ui/jquery-ui.min',
+            moment: 'components/moment/min/moment-with-locales',
+            codemirror: 'components/codemirror',
+            termjs: 'components/xterm.js/xterm',
+            typeahead: 'components/jquery-typeahead/dist/jquery.typeahead.min',
+          },
+          map: { // for backward compatibility
+              "*": {
+                  "jqueryui": "jquery-ui",
+              }
+          },
+          shim: {
+            typeahead: {
+              deps: ["jquery"],
+              exports: "typeahead"
+            },
+            underscore: {
+              exports: '_'
+            },
+            backbone: {
+              deps: ["underscore", "jquery"],
+              exports: "Backbone"
+            },
+            bootstrap: {
+              deps: ["jquery"],
+              exports: "bootstrap"
+            },
+            bootstraptour: {
+              deps: ["bootstrap"],
+              exports: "Tour"
+            },
+            "jquery-ui": {
+              deps: ["jquery"],
+            }
+          },
+          waitSeconds: 30,
+      });
+
+      require.config({
+          map: {
+              '*':{
+                'contents': 'services/contents',
+              }
+          }
+      });
+
+      // error-catching custom.js shim.
+      define("custom", function (require, exports, module) {
+          try {
+              var custom = require('custom/custom');
+              console.debug('loaded custom.js');
+              return custom;
+          } catch (e) {
+              console.error("error loading custom.js", e);
+              return {};
+          }
+      })
+
+    document.nbjs_translations = {"domain": "nbjs", "locale_data": {"nbjs": {"": {"domain": "nbjs"}}}};
+    document.documentElement.lang = navigator.language.toLowerCase();
+    </script>
+
+    
+    
+
+</head>
+
+<body class="edit_app "
+ 
+data-base-url="/"
+data-file-path="main.c"
+
+  
+    data-jupyter-api-token="2913d7cad2be1ba8c5d08fd1aee8e3179fadd526f35b1c50"
+  
+ 
+
+dir="ltr">
+
+<noscript>
+    <div id='noscript'>
+      Jupyter Notebook requires JavaScript.<br>
+      Please enable it to proceed. 
+  </div>
+</noscript>
+
+<div id="header" role="navigation" aria-label="Top Menu">
+  <div id="header-container" class="container">
+  <div id="ipython_notebook" class="nav navbar-brand"><a href="/tree?token=2913d7cad2be1ba8c5d08fd1aee8e3179fadd526f35b1c50" title='dashboard'>
+      <img src='/static/base/images/logo.png?v=e422e4b4869dcac6ed279d4b8ea9dad6710f8fef59512d6c346c434b420315a3db9ff6e13941d10991598351032ba31471b23e71b7e68a36698ad11cb3852791' alt='Jupyter Notebook'/>
+  </a></div>
+
+  
+
+<span id="save_widget" class="pull-left save_widget">
+    <span class="filename"></span>
+    <span class="last_modified"></span>
+</span>
+
+
+  
+
+  
+  
+  
+  
+
+    <span id="login_widget">
+      
+        <button id="logout" class="btn btn-sm navbar-btn">Logout</button>
+      
+    </span>
+
+  
+
+  
+  
+  </div>
+  <div class="header-bar"></div>
+
+  
+
+<div id="menubar-container" class="container">
+  <div id="menubar">
+    <div id="menus" class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+          <p  class="navbar-text indicator_area">
+          <span id="current-mode" >current mode</span>
+          </p>
+        <button type="button" class="btn btn-default navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <i class="fa fa-bars"></i>
+          <span class="navbar-text">Menu</span>
+        </button>
+        <ul class="nav navbar-nav navbar-right">
+          <li id="notification_area"></li>
+        </ul>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
+              <ul id="file-menu" class="dropdown-menu">
+                <li id="new-file"><a href="#">New</a></li>
+                <li id="save-file"><a href="#">Save</a></li>
+                <li id="rename-file"><a href="#">Rename</a></li>
+                <li id="download-file"><a href="#">Download</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
+              <ul id="edit-menu" class="dropdown-menu">
+                <li id="menu-find"><a href="#">Find</a></li>
+                <li id="menu-replace"><a href="#">Find &amp; Replace</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Key Map</li>
+                <li id="menu-keymap-default"><a href="#">Default<i class="fa"></i></a></li>
+                <li id="menu-keymap-sublime"><a href="#">Sublime Text<i class="fa"></i></a></li>
+                <li id="menu-keymap-vim"><a href="#">Vim<i class="fa"></i></a></li>
+                <li id="menu-keymap-emacs"><a href="#">emacs<i class="fa"></i></a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">View</a>
+              <ul id="view-menu" class="dropdown-menu">
+              <li id="toggle_header" title="Show/Hide the logo and notebook title (above menu bar)">
+              <a href="#">Toggle Header</a></li>
+              <li id="menu-line-numbers"><a href="#">Toggle Line Numbers</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Language</a>
+              <ul id="mode-menu" class="dropdown-menu">
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lower-header-bar"></div>
+
+
+</div>
+
+<div id="site">
+
+
+<div id="texteditor-backdrop">
+<div id="texteditor-container" class="container"></div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+    
+
+
+<script src="/static/edit/js/main.min.js?v=bfcae580d3c565b951af36b36fc07d55484cb6d1bcf6a8d54e44984abd0c395b7802e2381303e586b48bfb35e4e6bce1f7d8db61ea934298505bf606e8443bdf" type="text/javascript" charset="utf-8"></script>
+
+
+<script type='text/javascript'>
+  function _remove_token_from_url() {
+    if (window.location.search.length <= 1) {
+      return;
+    }
+    var search_parameters = window.location.search.slice(1).split('&');
+    for (var i = 0; i < search_parameters.length; i++) {
+      if (search_parameters[i].split('=')[0] === 'token') {
+        // remote token from search parameters
+        search_parameters.splice(i, 1);
+        var new_search = '';
+        if (search_parameters.length) {
+          new_search = '?' + search_parameters.join('&');
+        }
+        var new_url = window.location.origin + 
+                      window.location.pathname + 
+                      new_search + 
+                      window.location.hash;
+        window.history.replaceState({}, "", new_url);
+        return;
+      }
+    }
+  }
+  _remove_token_from_url();
+</script>
+</body>
+
+</html>#Ù>¥      d¸™Bd¸™BEÐ…™d¸™B   O    O^partitionKey=%28http%2Clocalhost%2C8888%29,:http://localhost:8888/edit/main.c necko:classified 1 strongly-framed 1 request-method GET response-head HTTP/1.1 200 OK
+Server: TornadoServer/6.1
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 20 Jul 2023 02:17:38 GMT
+X-Content-Type-Options: nosniff
+Content-Security-Policy: frame-ancestors 'self'; report-uri /api/security/csp-report
+Etag: "f110e8cfdb9147a7ea1a500de5c831b70f666e0c"
+Content-Length: 10557
+ original-response-headers Server: TornadoServer/6.1
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 20 Jul 2023 02:17:38 GMT
+X-Content-Type-Options: nosniff
+Content-Security-Policy: frame-ancestors 'self'; report-uri /api/security/csp-report
+Etag: "f110e8cfdb9147a7ea1a500de5c831b70f666e0c"
+Content-Length: 10557
+ ctid 1 uncompressed-len 0 net-response-time-onstart 185 net-response-time-onstop 191   )=

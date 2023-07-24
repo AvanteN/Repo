@@ -1,0 +1,13 @@
+2023/07/24-12:07:58.057 1a8e Recovering log #28
+2023/07/24-12:07:58.096 1a8e Level-0 table #30: started
+2023/07/24-12:07:58.197 1a8e Level-0 table #30: 1936 bytes OK
+2023/07/24-12:07:58.392 1a8e Delete type=0 #28
+2023/07/24-12:07:58.392 1a8e Delete type=3 #26
+2023/07/24-12:07:58.426 1a64 Compacting 4@0 + 0@1 files
+2023/07/24-12:07:58.634 1a64 Generated table #32@0: 15 keys, 4090 bytes
+2023/07/24-12:07:58.635 1a64 Compacted 4@0 + 0@1 files => 4090 bytes
+2023/07/24-12:07:58.746 1a64 compacted to: files[ 0 1 0 0 0 0 0 ]
+2023/07/24-12:07:58.747 1a64 Delete type=2 #8
+2023/07/24-12:07:58.747 1a64 Delete type=2 #5
+2023/07/24-12:07:58.747 1a64 Delete type=2 #21
+2023/07/24-12:07:58.747 1a64 Delete type=2 #30

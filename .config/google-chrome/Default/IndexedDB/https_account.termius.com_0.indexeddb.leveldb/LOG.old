@@ -1,0 +1,6 @@
+2023/07/21-14:03:56.710 cc7 Creating DB /home/abh1109/.config/google-chrome/Default/IndexedDB/https_account.termius.com_0.indexeddb.leveldb since it was missing.
+2023/07/21-14:03:56.864 cc7 Delete type=3 #1
+2023/07/21-14:03:57.591 ccb Level-0 table #5: started
+2023/07/21-14:03:57.663 ccb Level-0 table #5: 1236 bytes OK
+2023/07/21-14:03:57.738 ccb Delete type=0 #3
+2023/07/21-14:03:57.739 ccb Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)

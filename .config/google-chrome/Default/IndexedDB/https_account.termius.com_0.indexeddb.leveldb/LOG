@@ -1,0 +1,22 @@
+2023/07/21-14:04:40.858 cc7 Recovering log #4
+2023/07/21-14:04:40.866 cc7 Level-0 table #7: started
+2023/07/21-14:04:40.897 cc7 Level-0 table #7: 2382 bytes OK
+2023/07/21-14:04:40.909 cc7 Delete type=0 #4
+2023/07/21-14:04:40.909 cc7 Delete type=3 #2
+2023/07/21-14:04:41.070 cc7 Level-0 table #10: started
+2023/07/21-14:04:41.072 cc7 Level-0 table #10: 728 bytes OK
+2023/07/21-14:04:41.075 cc7 Delete type=0 #8
+2023/07/21-14:04:41.076 cc7 Manual compaction at level-0 from '\x00\x04\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at '\x00\x03\x01\x02\x013\x00[\x00D\x00E\x00F\x00A\x00U\x00L\x00T\x00]\x00!\x001\x00:\x003\x002\x000\x004\x000\x001\x006\x005\x007\x000\x007\x008\x00:\x00w\x00e\x00b\x00:\x00b\x00b\x00a\x000\x004\x004\x00d\x00a\x000\x00e\x000\x004\x00b\x003\x001\x005\x00c\x006\x00f\x000\x00d\x007' @ 113 : 1
+2023/07/21-14:04:41.076 cc7 Compacting 2@0 + 0@1 files
+2023/07/21-14:04:41.078 cc7 Generated table #11@0: 61 keys, 1369 bytes
+2023/07/21-14:04:41.078 cc7 Compacted 2@0 + 0@1 files => 1369 bytes
+2023/07/21-14:04:41.080 cc7 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/07/21-14:04:41.080 cc7 Delete type=2 #10
+2023/07/21-14:04:41.080 cc7 Manual compaction at level-0 from '\x00\x03\x01\x02\x013\x00[\x00D\x00E\x00F\x00A\x00U\x00L\x00T\x00]\x00!\x001\x00:\x003\x002\x000\x004\x000\x001\x006\x005\x007\x000\x007\x008\x00:\x00w\x00e\x00b\x00:\x00b\x00b\x00a\x000\x004\x004\x00d\x00a\x000\x00e\x000\x004\x00b\x003\x001\x005\x00c\x006\x00f\x000\x00d\x007' @ 113 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/07/21-14:05:21.884 cc8 Compacting 1@1 + 1@2 files
+2023/07/21-14:05:21.909 cc8 Generated table #12@1: 38 keys, 1157 bytes
+2023/07/21-14:05:21.909 cc8 Compacted 1@1 + 1@2 files => 1157 bytes
+2023/07/21-14:05:21.925 cc8 compacted to: files[ 0 0 1 0 0 0 0 ]
+2023/07/21-14:05:21.925 cc8 Delete type=2 #5
+2023/07/21-14:05:21.925 cc8 Delete type=2 #11
+2023/07/21-14:05:21.925 cc8 Delete type=2 #7
